@@ -23,6 +23,7 @@
 		B0BC8AE0261C434100B8122D /* ToDoListAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0BC8ADF261C434100B8122D /* ToDoListAppTests.swift */; };
 		B0BC8AEB261C434100B8122D /* ToDoListAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0BC8AEA261C434100B8122D /* ToDoListAppUITests.swift */; };
 		B0BC8B3A261DCC7200B8122D /* ColumnCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0BC8B39261DCC7200B8122D /* ColumnCell.swift */; };
+		B0BC8B42261DE28000B8122D /* ColumnView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0BC8B41261DE28000B8122D /* ColumnView.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		B0BC8AEA261C434100B8122D /* ToDoListAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListAppUITests.swift; sourceTree = "<group>"; };
 		B0BC8AEC261C434100B8122D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B0BC8B39261DCC7200B8122D /* ColumnCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColumnCell.swift; sourceTree = "<group>"; };
+		B0BC8B41261DE28000B8122D /* ColumnView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ColumnView.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +172,7 @@
 				8288BCF4261CAF3500883E0E /* ColumnDataSource.swift */,
 				8288BCFF261CB24E00883E0E /* ColumnDelegate.swift */,
 				828737CD261D7B1700CC5372 /* ColumnViewController.swift */,
+				B0BC8B41261DE28000B8122D /* ColumnView.storyboard */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -288,6 +291,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B0BC8AD5261C434100B8122D /* LaunchScreen.storyboard in Resources */,
+				B0BC8B42261DE28000B8122D /* ColumnView.storyboard in Resources */,
 				B0BC8AD2261C434100B8122D /* Assets.xcassets in Resources */,
 				B0BC8AD0261C433E00B8122D /* Main.storyboard in Resources */,
 			);
