@@ -7,16 +7,11 @@
 
 import UIKit
 
-class ViewController: UIViewController {    
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nil, bundle: nil)
-    }
+class ViewController: UIViewController {
     
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
 }
+
