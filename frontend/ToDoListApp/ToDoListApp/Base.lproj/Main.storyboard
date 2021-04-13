@@ -21,6 +21,9 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" systemColor="labelColor"/>
                                 <state key="normal" image="line.horizontal.3" catalog="system"/>
+                                <connections>
+                                    <action selector="showSideBar:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ocB-F8-4sR"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TO-DO LIST" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w4x-kY-HNp">
                                 <rect key="frame" x="48" y="13" width="171" height="38.5"/>

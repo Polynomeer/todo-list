@@ -10,9 +10,14 @@ import UIKit
 class ViewController: UIViewController {
     @IBOutlet var containerViewCollection: [UIView]!
     
+    
+    @IBAction func showSideBar(_ sender: Any) {
+        
+    }
+    
     override func viewDidLoad() {
-        setViewControllerInContainerView()
         super.viewDidLoad()
+        setViewControllerInContainerView()
     }
     
     override func viewDidAppear(_ animated: Bool) {
