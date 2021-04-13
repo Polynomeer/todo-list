@@ -10,11 +10,15 @@ import UIKit
 class ViewController: UIViewController {
     @IBOutlet var containerViewCollection: [UIView]!
     
+    let transitionDelegate = SideBarTransitionDelegate()
     
     @IBAction func showSideBar(_ sender: Any) {
         let sideBarStoryBoard = UIStoryboard.init(name: "SideBar", bundle: nil)
         let sideBarVC = sideBarStoryBoard.instantiateViewController(identifier: "SideBar")
+        sideBarVC.transitioningDelegate = transitionDelegate
+        sideBarVC.modalPresentationStyle = .custom
         present(sideBarVC, animated: true, completion: nil)
+        
     }
     
     override func viewDidLoad() {
@@ -22,10 +26,6 @@ class ViewController: UIViewController {
         setViewControllerInContainerView()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-
     private func setViewControllerInContainerView(){
         
         guard containerViewCollection != nil else {

@@ -49,6 +49,9 @@
                         <viewLayoutGuide key="safeArea" id="xgk-8t-3T9"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <connections>
+                        <outlet property="dismissButton" destination="TMm-8X-Y8f" id="9rA-GQ-hRq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Piv-C8-Bfj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

@@ -34,6 +34,7 @@
 		B0BC8BC0262443D100B8122D /* SideBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0BC8BBF262443D100B8122D /* SideBarViewController.swift */; };
 		B0BC8BC82625377D00B8122D /* SideBarTransitionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0BC8BC72625377D00B8122D /* SideBarTransitionDelegate.swift */; };
 		B0BC8BCD2625382C00B8122D /* SideBarPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0BC8BCC2625382C00B8122D /* SideBarPresentationController.swift */; };
+		B0BC8BD226253F1300B8122D /* SideBarPresentationAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0BC8BD126253F1300B8122D /* SideBarPresentationAnimator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +88,7 @@
 		B0BC8BBF262443D100B8122D /* SideBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBarViewController.swift; sourceTree = "<group>"; };
 		B0BC8BC72625377D00B8122D /* SideBarTransitionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBarTransitionDelegate.swift; sourceTree = "<group>"; };
 		B0BC8BCC2625382C00B8122D /* SideBarPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBarPresentationController.swift; sourceTree = "<group>"; };
+		B0BC8BD126253F1300B8122D /* SideBarPresentationAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBarPresentationAnimator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -229,6 +231,7 @@
 				B0BC8BBF262443D100B8122D /* SideBarViewController.swift */,
 				B0BC8BC72625377D00B8122D /* SideBarTransitionDelegate.swift */,
 				B0BC8BCC2625382C00B8122D /* SideBarPresentationController.swift */,
+				B0BC8BD126253F1300B8122D /* SideBarPresentationAnimator.swift */,
 			);
 			path = SideBar;
 			sourceTree = "<group>";
@@ -384,6 +387,7 @@
 				82A978FA26243A4900E86E07 /* TitleTextFieldDelegate.swift in Sources */,
 				B0BC8B7F261EF0F300B8122D /* Badge.swift in Sources */,
 				82E026C4261D367300651B9C /* CellData.swift in Sources */,
+				B0BC8BD226253F1300B8122D /* SideBarPresentationAnimator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
