@@ -8,11 +8,11 @@
 import UIKit
 
 class SideBarTransitionDelegate: NSObject {
-    <#code#>
+     
 }
 
 extension SideBarTransitionDelegate : UIViewControllerTransitioningDelegate {
     func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
-        <#code#>
+        return SideBarPresentationController(presentedViewController: presented, presenting: presenting)
     }
 }
