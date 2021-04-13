@@ -14,6 +14,7 @@
 		82E026C4261D367300651B9C /* CellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E026C3261D367300651B9C /* CellData.swift */; };
 		82E026C9261D37A100651B9C /* ColumnDatas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E026C8261D37A100651B9C /* ColumnDatas.swift */; };
 		82E026D1261D3BA800651B9C /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E026D0261D3BA800651B9C /* DataManager.swift */; };
+		B0911DCD2625974000D5EBEC /* HistoryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0911DCC2625974000D5EBEC /* HistoryData.swift */; };
 		B0BC8AC9261C433E00B8122D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0BC8AC8261C433E00B8122D /* AppDelegate.swift */; };
 		B0BC8ACB261C433E00B8122D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0BC8ACA261C433E00B8122D /* SceneDelegate.swift */; };
 		B0BC8ACD261C433E00B8122D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0BC8ACC261C433E00B8122D /* ViewController.swift */; };
@@ -62,6 +63,7 @@
 		82E026C3261D367300651B9C /* CellData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellData.swift; sourceTree = "<group>"; };
 		82E026C8261D37A100651B9C /* ColumnDatas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnDatas.swift; sourceTree = "<group>"; };
 		82E026D0261D3BA800651B9C /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		B0911DCC2625974000D5EBEC /* HistoryData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryData.swift; sourceTree = "<group>"; };
 		B0BC8AC5261C433E00B8122D /* ToDoListApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoListApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0BC8AC8261C433E00B8122D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B0BC8ACA261C433E00B8122D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -124,6 +126,24 @@
 				B0BC8B30261DBA4D00B8122D /* View */,
 			);
 			path = ColumnSection;
+			sourceTree = "<group>";
+		};
+		B0911DCA2625969600D5EBEC /* TransitionController */ = {
+			isa = PBXGroup;
+			children = (
+				B0BC8BC72625377D00B8122D /* SideBarTransitionDelegate.swift */,
+				B0BC8BCC2625382C00B8122D /* SideBarPresentationController.swift */,
+				B0BC8BD126253F1300B8122D /* SideBarPresentationAnimator.swift */,
+			);
+			path = TransitionController;
+			sourceTree = "<group>";
+		};
+		B0911DCB2625972E00D5EBEC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B0911DCC2625974000D5EBEC /* HistoryData.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		B0BC8ABC261C433E00B8122D = {
@@ -227,11 +247,10 @@
 		B0BC8BBE262443BA00B8122D /* SideBar */ = {
 			isa = PBXGroup;
 			children = (
+				B0911DCB2625972E00D5EBEC /* Model */,
+				B0911DCA2625969600D5EBEC /* TransitionController */,
 				B0BC8BB92624404700B8122D /* SideBar.storyboard */,
 				B0BC8BBF262443D100B8122D /* SideBarViewController.swift */,
-				B0BC8BC72625377D00B8122D /* SideBarTransitionDelegate.swift */,
-				B0BC8BCC2625382C00B8122D /* SideBarPresentationController.swift */,
-				B0BC8BD126253F1300B8122D /* SideBarPresentationAnimator.swift */,
 			);
 			path = SideBar;
 			sourceTree = "<group>";
@@ -378,6 +397,7 @@
 				82E026C9261D37A100651B9C /* ColumnDatas.swift in Sources */,
 				B0BC8B75261EF05500B8122D /* ColumnViewController.swift in Sources */,
 				82A9790226243A5B00E86E07 /* ContentTextFieldDelegate.swift in Sources */,
+				B0911DCD2625974000D5EBEC /* HistoryData.swift in Sources */,
 				B0BC8BCD2625382C00B8122D /* SideBarPresentationController.swift in Sources */,
 				B0BC8AC9261C433E00B8122D /* AppDelegate.swift in Sources */,
 				B0BC8B7A261EF08E00B8122D /* ColumnDelegate.swift in Sources */,
