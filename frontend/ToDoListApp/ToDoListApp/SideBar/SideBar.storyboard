@@ -16,9 +16,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TMm-8X-Y8f">
-                                <rect key="frame" x="325" y="69" width="24" height="24"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TMm-8X-Y8f">
+                                <rect key="frame" x="356" y="68" width="24" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="24" id="3GA-ec-vMx"/>
+                                    <constraint firstAttribute="height" constant="24" id="jIi-kC-04D"/>
+                                </constraints>
                                 <state key="normal" image="xmark" catalog="system"/>
+                                <connections>
+                                    <action selector="dismissButtonPushed:" destination="LQA-uv-5DI" eventType="touchUpInside" id="0ML-Ko-Lq6"/>
+                                </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vo3-ZB-QAB">
                                 <rect key="frame" x="48" y="124" width="332" height="658"/>
@@ -69,9 +76,6 @@
                             <constraint firstItem="vo3-ZB-QAB" firstAttribute="top" secondItem="xgk-8t-3T9" secondAttribute="top" constant="80" id="pDx-cq-DFl"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <outlet property="dismissButton" destination="TMm-8X-Y8f" id="9rA-GQ-hRq"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Piv-C8-Bfj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

@@ -8,9 +8,10 @@
 import UIKit
 
 class SideBarViewController: UIViewController {
-    
-    @IBOutlet weak var dismissButton: UIButton!
-    
+    @IBAction func dismissButtonPushed(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }
