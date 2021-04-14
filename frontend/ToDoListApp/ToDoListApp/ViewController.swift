@@ -23,10 +23,11 @@ class ViewController: UIViewController {
         var columnTitles : [String] = ["해야할 일", "하고 있는 일", "완료한 일"]
         let columnViewStoryboard = UIStoryboard.init(name: "ColumnView", bundle: nil)
         columnTitles.reverse()
-        for containerView in containerViewCollection {
+        for i in 0..<containerViewCollection.count {
             let columnVC = columnViewStoryboard.instantiateViewController(identifier: "ColumnView") as ColumnViewController
+            columnVC.columnID = i
             self.addChild(columnVC)
-            containerView.addSubview(columnVC.view)
+            containerViewCollection[i].addSubview(columnVC.view)
             columnVC.set(title: columnTitles.popLast()!)
         }
     }
