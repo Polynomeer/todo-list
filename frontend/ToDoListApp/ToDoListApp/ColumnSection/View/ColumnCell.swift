@@ -13,13 +13,7 @@ class ColumnCell : UITableViewCell {
     @IBOutlet weak private var content : UILabel!
     @IBOutlet weak private var caption : UILabel!
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-    }
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-    }
+    var cellid : Int = Int()
     
     func update(title: String){
         self.title.text = title

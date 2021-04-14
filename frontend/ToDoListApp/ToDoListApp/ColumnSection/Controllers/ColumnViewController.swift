@@ -11,32 +11,14 @@ class ColumnViewController : UIViewController {
     @IBOutlet weak var columnTitle: UILabel!
     @IBOutlet weak var columnTableView: UITableView!
     
-    private let cellDataManager : DataManager
-    private let columnDataSource : ColumnDataSource
-    private let columnDelegate : ColumnDelegate
+    private var columnDataSource : ColumnDataSource = ColumnDataSource()
+    private var columnDelegate : ColumnDelegate = ColumnDelegate()
     private var currentModalViewController : ModalViewController? = nil //3개의 뷰컨이 모두 응답하여서 현재 띄운 뷰 컨트롤러가 누구인지 구분하기 위함
-
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?){
-        self.cellDataManager = ColumnDatas()
-        self.columnDelegate = ColumnDelegate()
-        self.columnDataSource = ColumnDataSource.init(datamanager: cellDataManager)
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        self.cellDataManager = ColumnDatas()
-        self.columnDelegate = ColumnDelegate()
-        self.columnDataSource = ColumnDataSource.init(datamanager: cellDataManager)
-        super.init(coder: coder)
-    }
+    var columnID = Int()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         viewInit()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
     }
     
     @IBAction func addCardButton(_ sender: Any) {
@@ -50,7 +32,7 @@ class ColumnViewController : UIViewController {
     
     @objc private func addCard(sender: Notification){
         guard let currentModalVC = currentModalViewController else { return }
-        cellDataManager.add(cellData: currentModalVC.makeCellData())
+        DataManager.shared.add(cellData: currentModalVC.makeCellData(columnID: self.columnID))
         columnTableView.insertSections(IndexSet(integer: columnTableView.numberOfSections), with: .automatic)
         currentModalVC.set(active: false)
         self.currentModalViewController = nil
@@ -67,6 +49,7 @@ extension ColumnViewController {
     func viewInit(){
         guard columnTableView != nil else {return}
         columnTableView.delegate = columnDelegate
+        columnDataSource.columnId = columnID
         columnTableView.dataSource = columnDataSource
         columnTableView.reloadData()
         

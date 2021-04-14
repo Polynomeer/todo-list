@@ -9,12 +9,11 @@
 /* Begin PBXBuildFile section */
 		8288BCF5261CAF3500883E0E /* ColumnDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8288BCF4261CAF3500883E0E /* ColumnDataSource.swift */; };
 		8290E7932621BCB100EAA369 /* ModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8290E7922621BCB100EAA369 /* ModalViewController.swift */; };
-		82910CAA262541D20099EE0B /* ContextMenuDelegateofCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82910CA9262541D20099EE0B /* ContextMenuDelegateofCell.swift */; };
 		82A978FA26243A4900E86E07 /* TitleTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A978F926243A4900E86E07 /* TitleTextFieldDelegate.swift */; };
 		82A9790226243A5B00E86E07 /* ContentTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A9790126243A5B00E86E07 /* ContentTextFieldDelegate.swift */; };
 		82E026C4261D367300651B9C /* CellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E026C3261D367300651B9C /* CellData.swift */; };
-		82E026C9261D37A100651B9C /* ColumnDatas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E026C8261D37A100651B9C /* ColumnDatas.swift */; };
-		82E026D1261D3BA800651B9C /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E026D0261D3BA800651B9C /* DataManager.swift */; };
+		82E026C9261D37A100651B9C /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E026C8261D37A100651B9C /* DataManager.swift */; };
+		82E026D1261D3BA800651B9C /* DataManagingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E026D0261D3BA800651B9C /* DataManagingProtocol.swift */; };
 		B0BC8AC9261C433E00B8122D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0BC8AC8261C433E00B8122D /* AppDelegate.swift */; };
 		B0BC8ACB261C433E00B8122D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0BC8ACA261C433E00B8122D /* SceneDelegate.swift */; };
 		B0BC8ACD261C433E00B8122D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0BC8ACC261C433E00B8122D /* ViewController.swift */; };
@@ -53,12 +52,11 @@
 /* Begin PBXFileReference section */
 		8288BCF4261CAF3500883E0E /* ColumnDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnDataSource.swift; sourceTree = "<group>"; };
 		8290E7922621BCB100EAA369 /* ModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalViewController.swift; sourceTree = "<group>"; };
-		82910CA9262541D20099EE0B /* ContextMenuDelegateofCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMenuDelegateofCell.swift; sourceTree = "<group>"; };
 		82A978F926243A4900E86E07 /* TitleTextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleTextFieldDelegate.swift; sourceTree = "<group>"; };
 		82A9790126243A5B00E86E07 /* ContentTextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentTextFieldDelegate.swift; sourceTree = "<group>"; };
 		82E026C3261D367300651B9C /* CellData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellData.swift; sourceTree = "<group>"; };
-		82E026C8261D37A100651B9C /* ColumnDatas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnDatas.swift; sourceTree = "<group>"; };
-		82E026D0261D3BA800651B9C /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		82E026C8261D37A100651B9C /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		82E026D0261D3BA800651B9C /* DataManagingProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManagingProtocol.swift; sourceTree = "<group>"; };
 		B0BC8AC5261C433E00B8122D /* ToDoListApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoListApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0BC8AC8261C433E00B8122D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B0BC8ACA261C433E00B8122D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -192,7 +190,6 @@
 				8290E7922621BCB100EAA369 /* ModalViewController.swift */,
 				82A978F926243A4900E86E07 /* TitleTextFieldDelegate.swift */,
 				82A9790126243A5B00E86E07 /* ContentTextFieldDelegate.swift */,
-				82910CA9262541D20099EE0B /* ContextMenuDelegateofCell.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -201,8 +198,8 @@
 			isa = PBXGroup;
 			children = (
 				82E026C3261D367300651B9C /* CellData.swift */,
-				82E026C8261D37A100651B9C /* ColumnDatas.swift */,
-				82E026D0261D3BA800651B9C /* DataManager.swift */,
+				82E026C8261D37A100651B9C /* DataManager.swift */,
+				82E026D0261D3BA800651B9C /* DataManagingProtocol.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -349,12 +346,11 @@
 			files = (
 				B0BC8B0C261C924E00B8122D /* NetworkService.swift in Sources */,
 				B0BC8ACD261C433E00B8122D /* ViewController.swift in Sources */,
-				82910CAA262541D20099EE0B /* ContextMenuDelegateofCell.swift in Sources */,
-				82E026D1261D3BA800651B9C /* DataManager.swift in Sources */,
+				82E026D1261D3BA800651B9C /* DataManagingProtocol.swift in Sources */,
 				B0BC8B70261EF03100B8122D /* ColumnCell.swift in Sources */,
 				8290E7932621BCB100EAA369 /* ModalViewController.swift in Sources */,
 				8288BCF5261CAF3500883E0E /* ColumnDataSource.swift in Sources */,
-				82E026C9261D37A100651B9C /* ColumnDatas.swift in Sources */,
+				82E026C9261D37A100651B9C /* DataManager.swift in Sources */,
 				B0BC8B75261EF05500B8122D /* ColumnViewController.swift in Sources */,
 				82A9790226243A5B00E86E07 /* ContentTextFieldDelegate.swift in Sources */,
 				B0BC8AC9261C433E00B8122D /* AppDelegate.swift in Sources */,
