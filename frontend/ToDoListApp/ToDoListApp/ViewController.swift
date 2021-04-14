@@ -17,8 +17,9 @@ class ViewController: UIViewController {
         let sideBarVC = sideBarStoryBoard.instantiateViewController(identifier: "SideBar")
         sideBarVC.transitioningDelegate = transitionDelegate
         sideBarVC.modalPresentationStyle = .custom
-        present(sideBarVC, animated: true, completion: nil)
-        
+        DispatchQueue.main.async {
+            self.present(sideBarVC, animated: true, completion: nil)
+        }
     }
     
     override func viewDidLoad() {

@@ -81,7 +81,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="historyTableView" destination="vo3-ZB-QAB" id="nrC-9n-HoG"/>
+                        <outlet property="historyTableView" destination="vo3-ZB-QAB" id="atH-FY-S2w"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Piv-C8-Bfj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -8,11 +8,18 @@
 import UIKit
 
 class SideBarViewController: UIViewController {
+    @IBOutlet weak var historyTableView: UITableView!
+    
     @IBAction func dismissButtonPushed(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        DispatchQueue.main.async {
+            self.dismiss(animated: true, completion: nil)
+        }
     }
-
+    
+    let historyDatasource = HistoryDatasource()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        historyTableView.dataSource = historyDatasource
     }
 }
