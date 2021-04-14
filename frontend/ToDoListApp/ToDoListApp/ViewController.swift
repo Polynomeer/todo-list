@@ -11,15 +11,26 @@ class ViewController: UIViewController {
     @IBOutlet var containerViewCollection: [UIView]!
     
     let transitionDelegate = SideBarTransitionDelegate()
+    let networkService = NetworkService.init()
     
     @IBAction func showSideBar(_ sender: Any) {
         let sideBarStoryBoard = UIStoryboard.init(name: "SideBar", bundle: nil)
-        let sideBarVC = sideBarStoryBoard.instantiateViewController(identifier: "SideBar")
-        sideBarVC.transitioningDelegate = transitionDelegate
-        sideBarVC.modalPresentationStyle = .custom
-        DispatchQueue.main.async {
-            self.present(sideBarVC, animated: true, completion: nil)
-        }
+        
+        networkService.getRequest(needs: [HistoryData].self, api: .readHistory, closure: { result in
+            switch result {
+            case .success(let data) :
+                DispatchQueue.main.async {
+                    let sideBarVC = sideBarStoryBoard.instantiateViewController(identifier: "SideBar") as SideBarViewController
+                    sideBarVC.transitioningDelegate = self.transitionDelegate
+                    sideBarVC.modalPresentationStyle = .custom
+                    sideBarVC.historyDatas = data
+                    self.present(sideBarVC, animated: true, completion: nil)
+                }
+            case .failure(let error) :
+                print(error.localizedDescription)
+                break
+            }
+        })
     }
     
     override func viewDidLoad() {

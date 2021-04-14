@@ -9,6 +9,8 @@ import UIKit
 
 class SideBarViewController: UIViewController {
     @IBOutlet weak var historyTableView: UITableView!
+    var historyDatas = [HistoryData]()
+    var historyDatasource : HistoryDatasource!
     
     @IBAction func dismissButtonPushed(_ sender: Any) {
         DispatchQueue.main.async {
@@ -16,10 +18,9 @@ class SideBarViewController: UIViewController {
         }
     }
     
-    let historyDatasource = HistoryDatasource()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        historyDatasource = HistoryDatasource(historyDatas: historyDatas)
         historyTableView.dataSource = historyDatasource
     }
 }
