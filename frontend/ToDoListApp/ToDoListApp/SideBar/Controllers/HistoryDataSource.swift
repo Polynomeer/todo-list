@@ -8,24 +8,26 @@
 import UIKit
 
 class HistoryDatasource: NSObject, UITableViewDataSource {
-    
-    let historyDatas : [HistoryData]
+    let positionManager = PositionManager()
+    let historyData : [HistoryData]
     
     init(historyDatas : [HistoryData]) {
-        self.historyDatas = historyDatas
+        self.historyData = historyDatas
         super.init()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return historyDatas.count
+        return historyData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "HistoryCell", for: indexPath) as? HistoryCell else {
             return UITableViewCell()
         }
-        cell.historyContent.text = "\(historyDatas[indexPath.row].author) \(historyDatas[indexPath.row].title)"
-        cell.historyDate.text = "\(historyDatas[indexPath.row].date)"
+        let sortedHistoryData = positionManager.sort(history: historyData)
+        
+        cell.historyContent.text = "\(sortedHistoryData[indexPath.row].author) \(sortedHistoryData[indexPath.row].title)"
+        cell.historyDate.text = "\(sortedHistoryData[indexPath.row].date)"
         return cell
     }
 }
