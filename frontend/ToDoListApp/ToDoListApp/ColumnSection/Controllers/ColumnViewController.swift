@@ -21,8 +21,6 @@ class ColumnViewController : UIViewController {
         self.columnDelegate = ColumnDelegate()
         self.columnDataSource = ColumnDataSource.init(datamanager: cellDataManager)
         super.init(nibName: nil, bundle: nil)
-        columnTableView.estimatedRowHeight = 108
-        columnTableView.rowHeight = UITableView.automaticDimension
     }
     
     required init?(coder: NSCoder) {
@@ -41,14 +39,6 @@ class ColumnViewController : UIViewController {
         super.viewDidAppear(animated)
     }
     
-    override func viewDidLayoutSubviews() {
-        
-    }
-    
-    override func viewLayoutMarginsDidChange() {
-        
-    }
-    
     @IBAction func addCardButton(_ sender: Any) {
         guard let tempVC : ModalViewController = storyboard?.instantiateViewController(withIdentifier: "newCard") as? ModalViewController else {return}
         tempVC.view.isOpaque = false
@@ -56,11 +46,6 @@ class ColumnViewController : UIViewController {
         tempVC.modalPresentationStyle = .formSheet
         present(tempVC, animated: true, completion: nil)
         currentModalViewController = tempVC
-    }
-    
-    func set(title: String){
-        guard let tempTitle = columnTitle else {return}
-        tempTitle.text = title
     }
     
     @objc private func addCard(sender: Notification){
@@ -71,6 +56,10 @@ class ColumnViewController : UIViewController {
         self.currentModalViewController = nil
     }
     
+    func set(title: String){
+        guard let tempTitle = columnTitle else {return}
+        tempTitle.text = title
+    }
 }
 
 extension ColumnViewController {

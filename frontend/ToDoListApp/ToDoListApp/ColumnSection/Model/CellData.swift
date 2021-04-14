@@ -9,6 +9,7 @@ import Foundation
 
 class CellData : Codable {
     
+    var columnId : Int
     var cardId : Int
     var title : String
     var content: String
@@ -16,12 +17,14 @@ class CellData : Codable {
     var createdTime : String
     var position: Int
     
-    init(cardId: Int,
+    init(columnId: Int,
+        cardId: Int,
         title : String,
         content: String,
         isApp : Bool,
         createdTime : String,
         position: Int) {
+        self.columnId = columnId
         self.cardId = cardId
         self.title = title
         self.content = content

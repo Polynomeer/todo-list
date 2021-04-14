@@ -8,6 +8,7 @@
 import UIKit
 
 class ColumnCell : UITableViewCell {
+    
     @IBOutlet weak private var title : UILabel!
     @IBOutlet weak private var content : UILabel!
     @IBOutlet weak private var caption : UILabel!
