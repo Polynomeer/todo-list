@@ -9,7 +9,7 @@ import UIKit
 
 class SideBarViewController: UIViewController {
     @IBOutlet weak var historyTableView: UITableView!
-    var historyDatas = [HistoryData]()
+    var historyData = [HistoryData]()
     var historyDatasource : HistoryDatasource!
     
     @IBAction func dismissButtonPushed(_ sender: Any) {
@@ -20,7 +20,7 @@ class SideBarViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        historyDatasource = HistoryDatasource(historyDatas: historyDatas)
+        historyDatasource = HistoryDatasource(historyDatas: historyData)
         historyTableView.dataSource = historyDatasource
     }
 }

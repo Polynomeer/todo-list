@@ -23,7 +23,7 @@ class ViewController: UIViewController {
                     let sideBarVC = sideBarStoryBoard.instantiateViewController(identifier: "SideBar") as SideBarViewController
                     sideBarVC.transitioningDelegate = self.transitionDelegate
                     sideBarVC.modalPresentationStyle = .custom
-                    sideBarVC.historyDatas = data
+                    sideBarVC.historyData = data
                     self.present(sideBarVC, animated: true, completion: nil)
                 }
             case .failure(let error) :
