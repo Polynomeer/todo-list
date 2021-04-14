@@ -13,7 +13,7 @@ class ColumnViewController : UIViewController {
     
     private var columnDataSource : ColumnDataSource = ColumnDataSource()
     private var columnDelegate : ColumnDelegate = ColumnDelegate()
-    private var currentModalViewController : ModalViewController? = nil //3개의 뷰컨이 모두 응답하여서 현재 띄운 뷰 컨트롤러가 누구인지 구분하기 위함
+    private var currentModalViewController : ModalViewController? = nil
     var columnID = Int()
     
     override func viewDidLoad() {
