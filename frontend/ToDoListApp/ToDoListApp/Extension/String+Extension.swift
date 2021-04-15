@@ -5,7 +5,7 @@
 //  Created by 이다훈 on 2021/04/14.
 //
 
-import Foundation
+import UIKit
 
 extension String {
     func toDate() -> Date? { //"yyyy-MM-dd HH:mm:ss"
@@ -18,5 +18,15 @@ extension String {
         else {
             return nil
         }
+    }
+    
+    func emphasize(target words : String...) -> NSMutableAttributedString {
+        let attributedString = NSMutableAttributedString(string: self)
+        
+        for word in words {
+            attributedString.addAttribute(.font, value: UIFont.boldSystemFont(ofSize: 17), range: (self as NSString).range(of: "\(word)"))
+        }
+        
+        return attributedString
     }
 }
