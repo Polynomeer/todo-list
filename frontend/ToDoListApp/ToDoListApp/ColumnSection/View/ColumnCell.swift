@@ -15,11 +15,8 @@ class ColumnCell : UITableViewCell {
     
     var cellid : Int = Int()
     
-    func update(title: String){
+    func updateCell(title: String, content: String){
         self.title.text = title
-    }
-    
-    func update(content: String){
         self.content.text = content
     }
 }

@@ -39,16 +39,11 @@ class ViewController: UIViewController {
     }
     
     private func setViewControllerInContainerView(){
-        
-        guard containerViewCollection != nil else {
-            return
-        }
-        
-        var columnTitles : [String] = ["해야할 일", "하고 있는 일", "완료한 일"]
-        let columnViewStoryboard = UIStoryboard.init(name: "ColumnView", bundle: nil)
-        columnTitles.reverse()
+        let identifier : String = "ColumnView"
+        var columnTitles : [String] = ["완료한 일", "하고 있는 일", "해야할 일"]
+        let columnViewStoryboard = UIStoryboard.init(name: identifier, bundle: nil)
         for i in 0..<containerViewCollection.count {
-            let columnVC = columnViewStoryboard.instantiateViewController(identifier: "ColumnView") as ColumnViewController
+            let columnVC = columnViewStoryboard.instantiateViewController(identifier: identifier) as ColumnViewController
             columnVC.columnID = i
             self.addChild(columnVC)
             containerViewCollection[i].addSubview(columnVC.view)

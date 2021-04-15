@@ -32,14 +32,4 @@ class CellData : Codable {
         self.createdTime = createdTime
         self.position = position
     }
-    
-    func setCaption(){
-        if !isApp {
-            
-        }
-        else {
-            
-        }
-    }
-    
 }

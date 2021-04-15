@@ -15,13 +15,15 @@ class ColumnDataSource : NSObject, UITableViewDataSource {
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return DataManager.shared.currentDatasCount(columnId: columnId)
+        return DataManager.shared.currentDataCount(columnId: columnId)
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell : ColumnCell = tableView.dequeueReusableCell(withIdentifier: "ColumnCell", for: indexPath) as? ColumnCell else {return UITableViewCell()}
-        cell.update(title:  DataManager.shared.cellDataTitle(index: indexPath.section))
-        cell.update(content:  DataManager.shared.cellDataContent(index: indexPath.section))
+        let cellIdentifier : String = "ColumnCell"
+        guard let cell : ColumnCell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? ColumnCell else {
+            return UITableViewCell()
+        }
+        cell.updateCell(title: DataManager.shared.cellDataTitle(index: indexPath.section), content: DataManager.shared.cellDataContent(index: indexPath.section))
         cell.cellid = indexPath.section
         return cell
     }
