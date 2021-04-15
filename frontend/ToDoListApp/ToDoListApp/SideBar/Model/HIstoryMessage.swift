@@ -5,10 +5,10 @@
 //  Created by 이다훈 on 2021/04/14.
 //
 
-import Foundation
+import UIKit
 
 protocol HistoryMessage {
-    func show() -> String
+    func show() -> NSAttributedString
 }
 
 class moveMessage: HistoryMessage {
@@ -22,8 +22,17 @@ class moveMessage: HistoryMessage {
         self.to = to
     }
     
-    func show() -> String {
-        return "moved \(title) from \(from) to \(to)"
+    func show() -> NSAttributedString {
+        let string = "moved \(title) from \(from) to \(to)"
+        
+        let attributedString = NSMutableAttributedString(string: string)
+        attributedString.addAttribute(.font, value: UIFont.boldSystemFont(ofSize: 17), range: (string as NSString).range(of: "\(title)"))
+        
+        attributedString.addAttribute(.font, value: UIFont.boldSystemFont(ofSize: 17), range: (string as NSString).range(of: "\(from)"))
+        
+        attributedString.addAttribute(.font, value: UIFont.boldSystemFont(ofSize: 17), range: (string as NSString).range(of: "\(to)"))
+        
+        return attributedString
     }
 }
 
@@ -36,8 +45,14 @@ class addMessage: HistoryMessage {
         self.to = to
     }
     
-    func show() -> String {
-        return "added \(title) to \(to)"
+    func show() -> NSAttributedString {
+        let string = "added \(title) to \(to)"
+        
+        let attributedString = NSMutableAttributedString(string: string)
+        attributedString.addAttribute(.font, value: UIFont.boldSystemFont(ofSize: 17), range: (string as NSString).range(of: "\(title)"))
+        
+        attributedString.addAttribute(.font, value: UIFont.boldSystemFont(ofSize: 17), range: (string as NSString).range(of: "\(to)"))
+        return attributedString
     }
 }
 
@@ -50,8 +65,14 @@ class removeMessage: HistoryMessage {
         self.to = to
     }
     
-    func show() -> String {
-        return "remove \(title) from \(to)"
+    func show() -> NSAttributedString {
+        let string = "remove \(title) from \(to)"
+        
+        let attributedString = NSMutableAttributedString(string: string)
+        attributedString.addAttribute(.font, value: UIFont.boldSystemFont(ofSize: 17), range: (string as NSString).range(of: "\(title)"))
+        
+        attributedString.addAttribute(.font, value: UIFont.boldSystemFont(ofSize: 17), range: (string as NSString).range(of: "\(to)"))
+        return attributedString
     }
 }
 
@@ -64,13 +85,22 @@ class updateMessage: HistoryMessage {
         self.to = to
     }
     
-    func show() -> String {
-        return "update \(title) at \(to)"
+    func show() -> NSAttributedString {
+        let string = "update \(title) at \(to)"
+        
+        let attributedString = NSMutableAttributedString(string: string)
+        attributedString.addAttribute(.font, value: UIFont.boldSystemFont(ofSize: 17), range: (string as NSString).range(of: "\(title)"))
+        
+        attributedString.addAttribute(.font, value: UIFont.boldSystemFont(ofSize: 17), range: (string as NSString).range(of: "\(to)"))
+        return attributedString
     }
 }
 class nilMessage: HistoryMessage {
     
-    func show() -> String {
-        return "nil"
+    func show() -> NSAttributedString {
+        let string = "nil"
+        let attributedString = NSMutableAttributedString(string: string)
+        
+        return attributedString
     }
 }

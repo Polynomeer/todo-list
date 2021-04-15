@@ -26,7 +26,7 @@ class HistoryDatasource: NSObject, UITableViewDataSource {
         }
         let sortedHistoryData = positionManager.sort(history: historyData)
         
-        cell.historyContent.text = createHistoryMessage(with: sortedHistoryData[indexPath.row]).show()
+        cell.historyContent.attributedText = createHistoryMessage(with: sortedHistoryData[indexPath.row]).show()
         cell.historyDate.text = timelapseMessage(with: sortedHistoryData[indexPath.row].date)
         return cell
     }
