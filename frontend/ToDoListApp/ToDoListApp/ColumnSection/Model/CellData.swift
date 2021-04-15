@@ -9,19 +9,22 @@ import Foundation
 
 class CellData : Codable {
     
+    var columnId : Int
     var cardId : Int
     var title : String
     var content: String
-    var isApp : Bool // need Computed?
+    var isApp : Bool
     var createdTime : String
     var position: Int
     
-    init(cardId: Int,
+    init(columnId: Int,
+        cardId: Int,
         title : String,
         content: String,
         isApp : Bool,
         createdTime : String,
         position: Int) {
+        self.columnId = columnId
         self.cardId = cardId
         self.title = title
         self.content = content
@@ -39,12 +42,4 @@ class CellData : Codable {
         }
     }
     
-    func sendTitle() -> Void{
-        let userInfo : [String : String] = ["cardData" : title]
-        NotificationCenter.default.post(name: NSNotification.Name("abcd"), object: self, userInfo: userInfo)
-    }
-    
-    func sendContent() -> Void{
-      
-    }
 }
