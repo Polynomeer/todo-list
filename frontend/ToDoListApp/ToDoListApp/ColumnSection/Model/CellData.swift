@@ -9,13 +9,13 @@ import Foundation
 
 class CellData : Codable {
     
-    var columnId : Int
     var cardId : Int
     var title : String
     var content: String
     var isApp : Bool
-    var createdTime : String
     var position: Int
+    var columnId : Int
+    var createdTime : String
     
     init(columnId: Int,
         cardId: Int,

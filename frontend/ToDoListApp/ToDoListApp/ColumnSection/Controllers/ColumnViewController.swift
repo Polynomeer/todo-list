@@ -55,6 +55,15 @@ class ColumnViewController : UIViewController, ViewDataProtocol {
     func receiveData(titleText: String, contentText: String) -> Void {
         let createdCellData : CellData = DataManager.shared.makeCellData(columnID: self.columnID, titleTextField: titleText, contentTextField: contentText)
         DataManager.shared.add(cellData:createdCellData)
+        NetworkService.shared.postRequest(input: createdCellData, post: .createCell, closure: { result in
+            switch result {
+            case .success(let data):
+                print(data)
+            case .failure(let error):
+                print(error)
+            }
+            
+        })
     }
     
     @objc private func updateSectionInTableView(sender: Notification) -> Void {
