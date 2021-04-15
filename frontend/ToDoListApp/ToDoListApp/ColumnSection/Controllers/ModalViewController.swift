@@ -57,12 +57,13 @@ class ModalViewController : UIViewController {
         self.dismiss(animated: active, completion: nil)
     }
     
-    func makeCellData(columnID: Int) -> CellData{
+    func makeCellData(columnID: Int) -> CellData {
         guard let titlefieldText = titleTextField.text,
               let contentFieldText = contentTextField.text
-        else { return CellData.init(columnId: columnID, cardId: 0, title: "", content: "", isApp: false, createdTime: "", position: 0) }
+        else { return CellData.init(columnId: columnID, cardId: -1, title: "", content: "", isApp: true, createdTime: "", position: 0) }
         
-        let cellData : CellData = CellData.init(columnId: columnID, cardId: 0, title: titlefieldText, content: contentFieldText, isApp: false, createdTime: "", position: 0)
+        let nextCardId = DataManager.shared.nextCellId()
+        let cellData : CellData = CellData.init(columnId: columnID, cardId: nextCardId, title: titlefieldText, content: contentFieldText, isApp: true, createdTime: Date().convert(), position: 0)
         return cellData
     }
 }

@@ -16,6 +16,35 @@ class DataManager : DataManagingProtocol{
         cellData = []
     }
     
+    private func findLastCardId() -> Int? {
+        if cellData.isEmpty == true {
+            return nil
+        }
+        
+        guard var max = cellData.first?.cardId else {
+            return nil
+        }
+        
+        for cellDatum in cellData {
+            max = cellDatum.cardId > max ? cellDatum.cardId : max
+        }
+        
+        return max
+    }
+    func nextCellId() -> Int {
+        guard let max = findLastCardId() else {
+            return 0
+        }
+        
+        return max + 1
+    }
+    
+    func find(cellId: Int) -> CellData? {
+        return cellData.first(where: { cellData in
+            cellData.cardId == cellId
+        })
+    }
+    
     func add(cellData : CellData) -> Void{
         self.cellData.append(cellData)
     }

@@ -14,6 +14,8 @@ class ColumnViewController : UIViewController {
     private var columnDataSource : ColumnDataSource = ColumnDataSource()
     private var columnDelegate : ColumnDelegate = ColumnDelegate()
     private var currentModalViewController : ModalViewController? = nil
+    private let columnViewDragDelegate = ColumnViewDragDelegate()
+    private let columnViewDropDelegate = ColumnViewDropDelegate()
     var columnID = Int()
     
     override func viewDidLoad() {
@@ -51,6 +53,9 @@ extension ColumnViewController {
         columnTableView.delegate = columnDelegate
         columnDataSource.columnId = columnID
         columnTableView.dataSource = columnDataSource
+        columnTableView.dragDelegate = columnViewDragDelegate
+        columnTableView.dragInteractionEnabled = true
+        columnTableView.dropDelegate = columnViewDropDelegate
         columnTableView.reloadData()
         
         NotificationCenter.default.addObserver(self, selector: #selector(addCard), name: NSNotification.Name("addCard"), object: currentModalViewController)
