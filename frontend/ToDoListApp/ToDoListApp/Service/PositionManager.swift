@@ -50,4 +50,16 @@ class PositionManager {
         
         return sorted
     }
+    
+    func sort(history array : [HistoryData]) -> [HistoryData] {
+        var sorted = array.sorted(by: { lhs, rhs in
+            
+            guard let lhsDate = lhs.date.toDate(),
+                  let rhsDate = rhs.date.toDate() else {
+                return false
+            }
+            return lhsDate > rhsDate
+        })
+        return sorted
+    }
 }

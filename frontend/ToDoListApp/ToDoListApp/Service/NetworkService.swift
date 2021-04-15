@@ -16,8 +16,13 @@ class NetworkService {
         case badResponse
     }
     
+    enum apiList : String {
+        case none = ""
+        case readHistory = "api/histories"
+    }
+    
     private let session : URLSessionProtocol
-    private let urlString = "" // 추후 API 배포 후 변경 예정
+    private let urlString = "http://54.180.218.17:8080/"
     
     init(session : URLSessionProtocol = URLSession.shared) {
         self.session = session
@@ -35,8 +40,8 @@ class NetworkService {
         return .success(returnData)
     }
     
-    func getToDoData<T:Codable> (needs dataSet : T.Type,closure : @escaping (Result<T,NetworkError>) -> Void) {
-        guard let url = URL.init(string: self.urlString) else {
+    func getRequest<T:Codable> (needs dataSet : T.Type, api : apiList, closure : @escaping (Result<T,NetworkError>) -> Void) {
+        guard let url = URL.init(string: self.urlString + api.rawValue) else {
             return
         }
         var request = URLRequest(url: url)
@@ -49,7 +54,7 @@ class NetworkService {
         }).resume()
     }
     
-    func postToDoData<T:Codable> (input : T, post type : String, closure : @escaping (Result<Int,NetworkError>) -> Void) {
+    func postRequest<T:Codable> (input : T, post type : String, closure : @escaping (Result<Int,NetworkError>) -> Void) {
         
         let optionalURL = URL.init(string: urlString + type)
         guard let url = optionalURL else {

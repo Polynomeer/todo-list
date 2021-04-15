@@ -34,12 +34,12 @@ class MockURLSession: URLSessionProtocol {
     
     func dataTask(with request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
         
-        let successResponse = HTTPURLResponse(url: URL.init(string: "")!,
+        let successResponse = HTTPURLResponse(url: URL.init(string: "none")!,
                                               statusCode: 200,
                                               httpVersion: "2",
                                               headerFields: nil)
         
-        let failureResponse = HTTPURLResponse(url: URL.init(string: "")!,
+        let failureResponse = HTTPURLResponse(url: URL.init(string: "none")!,
                                               statusCode: 410,
                                               httpVersion: "2",
                                               headerFields: nil)
