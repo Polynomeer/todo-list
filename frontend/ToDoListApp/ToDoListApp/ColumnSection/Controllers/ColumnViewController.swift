@@ -16,12 +16,21 @@ class ColumnViewController : UIViewController, ViewDataProtocol {
     
     private var columnDataSource : ColumnDataSource = ColumnDataSource()
     private var columnDelegate : ColumnDelegate = ColumnDelegate()
+    private let columnViewDragDelegate = ColumnViewDragDelegate()
+    private let columnViewDropDelegate = ColumnViewDropDelegate()
     private let delegate : ViewDataProtocol? = nil
+    
     var columnID = Int()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         viewInit()
+    }
+    
+    @objc func reload() {
+        DispatchQueue.main.async {
+            self.columnTableView.reloadData()
+        }
     }
     
     @IBAction func addCardButton(_ sender: Any) {
@@ -43,7 +52,7 @@ class ColumnViewController : UIViewController, ViewDataProtocol {
     }
     
     func receiveData(titleText: String, contentText: String) -> Void {
-        let createdCellData : CellData = DataManager.shared.makeCellData(ColumnID: self.columnID, titleTextField: titleText, contentTextField: contentText)
+        let createdCellData : CellData = DataManager.shared.makeCellData(columnID: self.columnID, titleTextField: titleText, contentTextField: contentText)
         DataManager.shared.add(cellData:createdCellData)
     }
     
@@ -68,7 +77,13 @@ extension ColumnViewController {
         columnTableView.delegate = columnDelegate
         columnDataSource.columnId = columnID
         columnTableView.dataSource = columnDataSource
+        columnTableView.dragDelegate = columnViewDragDelegate
+        columnTableView.dragInteractionEnabled = true
+        columnViewDropDelegate.columnId = self.columnID
+        columnTableView.dropDelegate = columnViewDropDelegate
         columnTableView.reloadData()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(reload), name: .reloadAllColumnTable, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateSectionInTableView(sender:)), name: Notification.Name.addData, object: DataManager.shared)
     }
 }

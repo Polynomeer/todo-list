@@ -38,7 +38,6 @@ class ModalViewController : UIViewController, UITextFieldDelegate{
     @IBAction func cancelButtonPushed(_ sender: Any) {
         self.dismiss(animated: false, completion: nil)
     }
-    
     func set(delegate: ViewDataProtocol){
         self.delegate = delegate
     }

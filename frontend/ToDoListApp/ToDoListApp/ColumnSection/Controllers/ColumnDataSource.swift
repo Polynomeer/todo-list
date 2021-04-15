@@ -23,8 +23,13 @@ class ColumnDataSource : NSObject, UITableViewDataSource {
         guard let cell : ColumnCell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? ColumnCell else {
             return UITableViewCell()
         }
-        cell.updateCell(title: DataManager.shared.cellDataTitle(index: indexPath.section), content: DataManager.shared.cellDataContent(index: indexPath.section))
-        cell.cellid = indexPath.section
+        let columnData = DataManager.shared.getCells(with: columnId)
+        let sorted = DataManager.shared.positionManager.sort(card: columnData)
+        
+        cell.updateCell(title: sorted[indexPath.section].title, content: sorted[indexPath.section].content)
+        cell.cellid = sorted[indexPath.section].cardId
+        
+        NotificationCenter.default.post(name: .reloadAllColumnTable, object: nil)
         return cell
     }
     
