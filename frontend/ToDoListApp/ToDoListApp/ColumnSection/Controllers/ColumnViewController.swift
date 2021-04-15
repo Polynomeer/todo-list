@@ -13,6 +13,7 @@ class ColumnViewController : UIViewController, ViewDataProtocol {
     
     @IBOutlet weak var columnTitle: UILabel!
     @IBOutlet weak var columnTableView: UITableView!
+    @IBOutlet weak var badge: Badge!
     
     private var columnDataSource : ColumnDataSource = ColumnDataSource()
     private var columnDelegate : ColumnDelegate = ColumnDelegate()
@@ -64,6 +65,7 @@ class ColumnViewController : UIViewController, ViewDataProtocol {
             return
         }
         self.columnTableView.insertSections(IndexSet(integer: columnTableView.numberOfSections), with: .automatic)
+        self.badge.text = "\(columnTableView.numberOfSections)"
     }
     
 }

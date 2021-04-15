@@ -135,6 +135,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="badge" destination="7UJ-T5-y8U" id="7T0-DJ-ldq"/>
                         <outlet property="columnTableView" destination="lV4-pe-jrs" id="Ygd-IF-0MN"/>
                         <outlet property="columnTitle" destination="N6j-Nf-i8o" id="cqL-xe-3WW"/>
                     </connections>
