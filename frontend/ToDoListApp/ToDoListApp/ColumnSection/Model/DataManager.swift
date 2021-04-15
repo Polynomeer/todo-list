@@ -1,5 +1,5 @@
 //
-//  ColumnDatas.swift
+//  ColumnData.swift
 //  ToDoListApp
 //
 //  Created by 박정하 on 2021/04/07.
@@ -18,6 +18,7 @@ class DataManager : DataManagingProtocol{
     
     func add(cellData : CellData) -> Void{
         self.cellData.append(cellData)
+        NotificationCenter.default.post(name: Notification.Name.addData, object: self, userInfo: ["columnId" : cellData.columnId])
     }
     func remove(index : Int) -> Void {
         cellData.remove(at: index)
@@ -32,7 +33,7 @@ class DataManager : DataManagingProtocol{
         cellData[cellIndex].columnId = column
     }
     
-    func currentDatasCount(columnId : Int) -> Int{
+    func currentDataCount(columnId : Int) -> Int{
         return cellData.filter({ cellData in
             cellData.columnId == columnId
         }).count
@@ -44,5 +45,10 @@ class DataManager : DataManagingProtocol{
     
     func cellDataContent(index : Int) -> String{
         return cellData[index].content
+    }
+    
+    func makeCellData(ColumnID: Int, titleTextField: String, contentTextField: String) -> CellData {
+        let tempCellData : CellData = CellData.init(columnId: ColumnID, cardId: 0, title: titleTextField, content: contentTextField, isApp: false, createdTime: "", position: 0)
+        return tempCellData
     }
 }

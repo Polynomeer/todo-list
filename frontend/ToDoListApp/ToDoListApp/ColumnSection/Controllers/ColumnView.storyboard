@@ -195,7 +195,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="addCard:" destination="cRD-uS-59D" eventType="touchUpInside" id="VR1-mY-l8d"/>
+                                    <action selector="addButtonPushed:" destination="cRD-uS-59D" eventType="touchUpInside" id="6xQ-Du-Gf0"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HKc-YV-gaL">
@@ -214,7 +214,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="inActiveNewCardForm:" destination="cRD-uS-59D" eventType="touchUpInside" id="ETy-yu-N7Q"/>
+                                    <action selector="cancelButtonPushed:" destination="cRD-uS-59D" eventType="touchUpInside" id="JCX-Hx-U0S"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -237,8 +237,8 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="400" height="219"/>
                     <connections>
-                        <outlet property="CancelButton" destination="HKc-YV-gaL" id="OuC-XA-qiC"/>
-                        <outlet property="addButton" destination="PcI-mF-uzi" id="gcn-qy-xvR"/>
+                        <outlet property="addButton" destination="PcI-mF-uzi" id="VPa-RJ-nLS"/>
+                        <outlet property="cancelButton" destination="HKc-YV-gaL" id="BJY-dE-PH9"/>
                         <outlet property="contentTextField" destination="VPR-JG-RuT" id="7sG-mU-XiZ"/>
                         <outlet property="titleTextField" destination="mZm-iv-P9n" id="uOT-7H-hMZ"/>
                     </connections>
