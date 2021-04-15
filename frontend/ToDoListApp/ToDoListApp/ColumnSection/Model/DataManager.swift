@@ -61,10 +61,16 @@ class DataManager : DataManagingProtocol{
         cellData[cellIndex].columnId = column
     }
     
-    func currentDatasCount(columnId : Int) -> Int{
+    func currentDatasCount(columnId : Int) -> Int {
         return cellData.filter({ cellData in
             cellData.columnId == columnId
         }).count
+    }
+    
+    func getCells(with columnId : Int) -> [CellData] {
+        return cellData.filter({ cellData in
+            cellData.columnId == columnId
+        })
     }
     
     func cellDataTitle(index : Int) -> String{

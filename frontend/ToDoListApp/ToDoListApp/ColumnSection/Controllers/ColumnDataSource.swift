@@ -20,9 +20,11 @@ class ColumnDataSource : NSObject, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell : ColumnCell = tableView.dequeueReusableCell(withIdentifier: "ColumnCell", for: indexPath) as? ColumnCell else {return UITableViewCell()}
-        cell.update(title:  DataManager.shared.cellDataTitle(index: indexPath.section))
-        cell.update(content:  DataManager.shared.cellDataContent(index: indexPath.section))
-        cell.cellid = indexPath.section
+        
+        let columnData = DataManager.shared.getCells(with: columnId)
+        cell.update(title: columnData[indexPath.section].title)
+        cell.update(content: columnData[indexPath.section].content)
+        cell.cellid = columnData[indexPath.section].cardId
         return cell
     }
     

@@ -15,14 +15,14 @@ extension ColumnViewDragDelegate : UITableViewDragDelegate {
     func tableView(_ tableView: UITableView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
         
         let targetCellId = (tableView.cellForRow(at: indexPath) as! ColumnCell).cellid
+        
         guard let cellDatum = DataManager.shared.find(cellId: targetCellId) else {
             return []
         }
-        guard let data = String(cellDatum.cardId).data(using: .utf8) else {
-            return []
-        }
-        let itemProvider = NSItemProvider(item: data as NSData, typeIdentifier: kUTTypePlainText as String)
+        let itemProvider = NSItemProvider()
+        let dragItem = UIDragItem(itemProvider: itemProvider)
+        dragItem.localObject = cellDatum
         
-        return [UIDragItem(itemProvider: itemProvider)]
+        return [dragItem]
     }
 }

@@ -23,6 +23,10 @@ class ColumnViewController : UIViewController {
         viewInit()
     }
     
+    @objc func reload() {
+        self.columnTableView.reloadData()
+    }
+    
     @IBAction func addCardButton(_ sender: Any) {
         guard let tempVC : ModalViewController = storyboard?.instantiateViewController(withIdentifier: "newCard") as? ModalViewController else {return}
         tempVC.view.isOpaque = false
@@ -55,9 +59,11 @@ extension ColumnViewController {
         columnTableView.dataSource = columnDataSource
         columnTableView.dragDelegate = columnViewDragDelegate
         columnTableView.dragInteractionEnabled = true
+        columnViewDropDelegate.columnId = self.columnID
         columnTableView.dropDelegate = columnViewDropDelegate
         columnTableView.reloadData()
         
         NotificationCenter.default.addObserver(self, selector: #selector(addCard), name: NSNotification.Name("addCard"), object: currentModalViewController)
+        NotificationCenter.default.addObserver(self, selector: #selector(reload), name: .reloadAllColumnTable, object: nil)
     }
 }
