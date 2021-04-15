@@ -76,12 +76,16 @@ class NetworkService {
         }).resume()
     }
     
-    func putRequest(cardId : Int, api : postAPI, closure : @escaping (Result<Int,NetworkError>) -> Void) {
-        guard let url = URL.init(string: self.urlString + api.rawValue + String(cardId)) else {
+    func putRequest(card : CellData, api : postAPI, closure : @escaping (Result<Int,NetworkError>) -> Void) {
+        let encoder = JSONEncoder()
+        guard let url = URL.init(string: self.urlString + api.rawValue + String(card.cardId)) else {
             return
         }
+        let sendData = try? encoder.encode(card)
         var request = URLRequest(url: url)
         request.httpMethod = "PUT"
+        request.httpBody = sendData
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
         session.dataTask(with: request, completionHandler: {(data,response,error) in
             

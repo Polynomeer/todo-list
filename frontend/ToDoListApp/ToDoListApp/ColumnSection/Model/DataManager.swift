@@ -38,7 +38,7 @@ class DataManager : DataManagingProtocol {
     }
     func nextCellId() -> Int {
         guard let max = findLastCardId() else {
-            return 0
+            return 1
         }
         
         return max + 1

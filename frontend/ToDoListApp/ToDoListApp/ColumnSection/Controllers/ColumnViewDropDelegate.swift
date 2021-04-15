@@ -30,6 +30,15 @@ extension ColumnViewDropDelegate : UITableViewDropDelegate {
         localObjects.forEach({
             DataManager.shared.move(to: self.columnId, cellId: $0.cardId)
             DataManager.shared.positionManager.setPosition(target: $0.cardId, column: columnId, to: destinationIndexPath.section)
+            NetworkService.shared.putRequest(card: $0, api: .deleteOrUpdateCell, closure: {
+                result in
+                    switch result {
+                    case .success(let data):
+                        print(data)
+                    case .failure(let error):
+                        print(error)
+                    }
+            })
         })
         
         NotificationCenter.default.post(name: .reloadAllColumnTable, object: self)
