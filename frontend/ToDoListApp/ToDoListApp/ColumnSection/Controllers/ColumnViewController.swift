@@ -28,7 +28,9 @@ class ColumnViewController : UIViewController, ViewDataProtocol {
     }
     
     @objc func reload() {
-        self.columnTableView.reloadData()
+        DispatchQueue.main.async {
+            self.columnTableView.reloadData()
+        }
     }
     
     @IBAction func addCardButton(_ sender: Any) {

@@ -11,6 +11,7 @@ class DataManager : DataManagingProtocol{
     static var shared = DataManager()
     
     private var cellData : [CellData]
+    let positionManager = PositionManager()
     
     init() {
         cellData = []
@@ -49,6 +50,7 @@ class DataManager : DataManagingProtocol{
         self.cellData.append(cellData)
         NotificationCenter.default.post(name: Notification.Name.addData, object: self, userInfo: ["columnId" : cellData.columnId])
     }
+    
     func remove(index : Int) -> Void {
         cellData.remove(at: index)
     }
@@ -60,6 +62,15 @@ class DataManager : DataManagingProtocol{
             return
         }
         cellData[cellIndex].columnId = column
+    }
+    
+    func setPosition(cellId : Int, position : Int) {
+        guard let cellIndex = cellData.firstIndex(where: { cell in
+            cell.cardId == cellId
+        }) else {
+            return
+        }
+        cellData[cellIndex].position = position
     }
     
     func currentDataCount(columnId : Int) -> Int{
@@ -84,7 +95,12 @@ class DataManager : DataManagingProtocol{
     
     func makeCellData(columnID: Int, titleTextField: String, contentTextField: String) -> CellData {
         let nextCardId = DataManager.shared.nextCellId()
-        let cellData : CellData = CellData.init(columnId: columnID, cardId: nextCardId, title: titleTextField, content: contentTextField, isApp: true, createdTime: Date().convert(), position: 0)
+        let cards = DataManager.shared.getCells(with: columnID)
+        
+        let positionManager = PositionManager()
+        let nextPosition = positionManager.nextPosition(with: cards)
+        
+        let cellData : CellData = CellData.init(columnId: columnID, cardId: nextCardId, title: titleTextField, content: contentTextField, isApp: true, createdTime: Date().convert(), position: nextPosition)
         return cellData
     }
 }

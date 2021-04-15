@@ -18,7 +18,7 @@ extension ColumnViewDropDelegate : UITableViewDropDelegate {
         if let indexPath = coordinator.destinationIndexPath {
             destinationIndexPath = indexPath
         } else {
-            destinationIndexPath = IndexPath(row: 0, section: 0)
+            destinationIndexPath = IndexPath(row: 0, section: tableView.numberOfSections)
         }
         
         guard let dragItems = coordinator.session.localDragSession?.items else {
@@ -29,9 +29,9 @@ extension ColumnViewDropDelegate : UITableViewDropDelegate {
         }
         localObjects.forEach({
             DataManager.shared.move(to: self.columnId, cellId: $0.cardId)
+            DataManager.shared.positionManager.setPosition(target: $0.cardId, column: columnId, to: destinationIndexPath.section)
         })
         
         NotificationCenter.default.post(name: .reloadAllColumnTable, object: self)
     }
-    
 }

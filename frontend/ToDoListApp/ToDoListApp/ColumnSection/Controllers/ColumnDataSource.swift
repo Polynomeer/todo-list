@@ -19,15 +19,17 @@ class ColumnDataSource : NSObject, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cellIdentifier : String = "ColumnCell"
         guard let cell : ColumnCell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? ColumnCell else {
             return UITableViewCell()
         }
         let columnData = DataManager.shared.getCells(with: columnId)
-        cell.updateCell(title: columnData[indexPath.section].title, content: columnData[indexPath.section].content)
-        cell.cellid = columnData[indexPath.section].cardId
+        let sorted = DataManager.shared.positionManager.sort(card: columnData)
         
+        cell.updateCell(title: sorted[indexPath.section].title, content: sorted[indexPath.section].content)
+        cell.cellid = sorted[indexPath.section].cardId
+        
+        NotificationCenter.default.post(name: .reloadAllColumnTable, object: nil)
         return cell
     }
     

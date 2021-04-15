@@ -62,4 +62,37 @@ class PositionManager {
         })
         return sorted
     }
+    
+    func sort(card array : [CellData]) -> [CellData] {
+        var sorted = array.sorted(by: { lhs, rhs in
+            
+            let lhsPosition = lhs.position
+            let rhsPosition = rhs.position
+            
+            return lhsPosition > rhsPosition
+        })
+        return sorted
+    }
+    
+    func setPosition(target cardId : Int, column : Int, to index : Int) {
+        let columnCards = DataManager.shared.getCells(with: column)
+        let cards = self.sort(card: columnCards)
+        
+        var lower = Int()
+        var upper = Int()
+        if index == 0 {
+            upper = DataManager.shared.positionManager.nextPosition(with: cards)
+            lower = cards[index].position
+        } else if index == cards.count - 1 {
+            upper = cards[index].position
+            lower = 0
+        } else {
+            upper = cards[index - 1].position
+            lower = cards[index + 1].position
+        }
+        
+        let median = (upper + lower) / 2
+        
+        DataManager.shared.setPosition(cellId: cardId, position: median)
+    }
 }
