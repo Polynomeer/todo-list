@@ -29,13 +29,13 @@ class ColumnDataSource : NSObject, UITableViewDataSource {
         cell.updateCell(title: sorted[indexPath.section].title, content: sorted[indexPath.section].content)
         cell.cellid = sorted[indexPath.section].cardId
         
-        NotificationCenter.default.post(name: .reloadAllColumnTable, object: nil)
         return cell
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete{
-            DataManager.shared.remove(index: indexPath.section)
+            DataManager.shared.remove(index: indexPath.section, columnId: columnId)
+            
             tableView.deleteSections(IndexSet(integer: indexPath.section), with: .fade)
         }
     }

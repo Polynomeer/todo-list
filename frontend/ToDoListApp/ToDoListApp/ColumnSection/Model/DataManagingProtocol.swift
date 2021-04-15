@@ -10,7 +10,7 @@ import Foundation
 protocol DataManagingProtocol {
     func currentDataCount(columnId : Int) -> Int
     func add(cellData : CellData) -> Void
-    func remove(index : Int) -> Void
+    func remove(index : Int, columnId : Int) -> Void
     func cellDataTitle(index : Int) -> String
     func cellDataContent(index : Int) -> String
 }

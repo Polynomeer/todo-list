@@ -26,6 +26,7 @@ class NetworkService {
     
     enum postAPI : String {
         case createCell = "api/cards"
+        case deleteOrUpdateCell = "api/cards/"
     }
     
     private let session : URLSessionProtocol
@@ -57,6 +58,34 @@ class NetworkService {
             
             let result = self.decode(form : T.self, data: data)
             
+            closure(result)
+        }).resume()
+    }
+    
+    func deleteRequest(cardId : Int, api : postAPI, closure : @escaping (Result<Int,NetworkError>) -> Void) {
+        guard let url = URL.init(string: self.urlString + api.rawValue + String(cardId)) else {
+            return
+        }
+        var request = URLRequest(url: url)
+        request.httpMethod = "DELETE"
+        
+        session.dataTask(with: request, completionHandler: {(data,response,error) in
+            
+            let result = self.checkStatus(with: response)
+            closure(result)
+        }).resume()
+    }
+    
+    func putRequest(cardId : Int, api : postAPI, closure : @escaping (Result<Int,NetworkError>) -> Void) {
+        guard let url = URL.init(string: self.urlString + api.rawValue + String(cardId)) else {
+            return
+        }
+        var request = URLRequest(url: url)
+        request.httpMethod = "PUT"
+        
+        session.dataTask(with: request, completionHandler: {(data,response,error) in
+            
+            let result = self.checkStatus(with: response)
             closure(result)
         }).resume()
     }

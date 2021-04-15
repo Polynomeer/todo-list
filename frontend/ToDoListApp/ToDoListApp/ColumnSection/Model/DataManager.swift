@@ -7,7 +7,7 @@
 
 import Foundation
 
-class DataManager : DataManagingProtocol{
+class DataManager : DataManagingProtocol {
     static var shared = DataManager()
     
     private var cellData : [CellData]
@@ -53,10 +53,29 @@ class DataManager : DataManagingProtocol{
     func add(cellData : CellData) -> Void{
         self.cellData.append(cellData)
         NotificationCenter.default.post(name: Notification.Name.addData, object: self, userInfo: ["columnId" : cellData.columnId])
+        NotificationCenter.default.post(name: .reloadAllColumnTable, object: nil)
     }
     
-    func remove(index : Int) -> Void {
-        cellData.remove(at: index)
+    func remove(index : Int, columnId : Int) -> Void {
+        let cards = getCells(with: columnId)
+        let sorted = positionManager.sort(card: cards)
+        guard let target = cellData.firstIndex(where: {
+            $0.cardId == sorted[index].cardId
+        }) else {
+            return
+        }
+        print(cellData[target].title, cellData[target].cardId)
+        
+        NetworkService.shared.deleteRequest(cardId: cellData[target].cardId, api: .deleteOrUpdateCell, closure: { result in
+            switch result {
+            case .success(let data):
+                print(data)
+            case .failure(let error):
+                print(error)
+            }
+        })
+        
+        cellData.remove(at: target)
     }
     
     func move(to column: Int, cellId : Int) -> Void{
