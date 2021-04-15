@@ -142,6 +142,7 @@
 			path = ColumnSection;
 			sourceTree = "<group>";
 		};
+<<<<<<< HEAD
 		B0911DCA2625969600D5EBEC /* TransitionController */ = {
 			isa = PBXGroup;
 			children = (
@@ -181,7 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				B0911E372626E24400D5EBEC /* String+Extension.swift */,
-				8298994F2627337800D62C2B /* Notification+Extension.swift */,
+				B0911E362626E22D00D5EBEC /* Notification+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
