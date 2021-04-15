@@ -11,12 +11,11 @@ class ViewController: UIViewController {
     @IBOutlet var containerViewCollection: [UIView]!
     
     let transitionDelegate = SideBarTransitionDelegate()
-    let networkService = NetworkService.init()
     
     @IBAction func showSideBar(_ sender: Any) {
         let sideBarStoryBoard = UIStoryboard.init(name: "SideBar", bundle: nil)
         
-        networkService.getRequest(needs: [HistoryData].self, api: .readHistory, closure: { result in
+        NetworkService.shared.getRequest(needs: [HistoryData].self, api: .readHistory, closure: { result in
             switch result {
             case .success(let data) :
                 DispatchQueue.main.async {
@@ -35,19 +34,30 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setViewControllerInContainerView()
+        NetworkService.shared.getRequest(needs: [CellData].self, api: .readCells, closure: { result in
+            switch result {
+            case .success(let data):
+                DataManager.shared.setData(cells: data)
+            case .failure(let error):
+                break
+            }
+            self.setViewControllerInContainerView()
+        })
     }
     
     private func setViewControllerInContainerView(){
         let identifier : String = "ColumnView"
         var columnTitles : [String] = ["완료한 일", "하고 있는 일", "해야할 일"]
         let columnViewStoryboard = UIStoryboard.init(name: identifier, bundle: nil)
-        for i in 0..<containerViewCollection.count {
-            let columnVC = columnViewStoryboard.instantiateViewController(identifier: identifier) as ColumnViewController
-            columnVC.columnID = i
-            self.addChild(columnVC)
-            containerViewCollection[i].addSubview(columnVC.view)
-            columnVC.set(title: columnTitles.popLast()!)
+        
+        DispatchQueue.main.async {
+            for i in 0..<self.containerViewCollection.count {
+                let columnVC = columnViewStoryboard.instantiateViewController(identifier: identifier) as ColumnViewController
+                columnVC.columnID = i + 1
+                self.addChild(columnVC)
+                self.containerViewCollection[i].addSubview(columnVC.view)
+                columnVC.set(title: columnTitles.popLast()!)
+            }
         }
     }
 }

@@ -9,6 +9,8 @@ import Foundation
 
 class NetworkService {
     
+    static var shared = NetworkService()
+    
     enum NetworkError : Error {
         case invalidData
         case nilData
@@ -16,9 +18,15 @@ class NetworkService {
         case badResponse
     }
     
-    enum apiList : String {
+    enum getAPI : String {
         case none = ""
         case readHistory = "api/histories"
+        case readCells = "api/cards"
+    }
+    
+    enum postAPI : String {
+        case createCell = "api/cards"
+        case deleteOrUpdateCell = "api/cards/"
     }
     
     private let session : URLSessionProtocol
@@ -40,7 +48,7 @@ class NetworkService {
         return .success(returnData)
     }
     
-    func getRequest<T:Codable> (needs dataSet : T.Type, api : apiList, closure : @escaping (Result<T,NetworkError>) -> Void) {
+    func getRequest<T:Codable> (needs dataSet : T.Type, api : getAPI, closure : @escaping (Result<T,NetworkError>) -> Void) {
         guard let url = URL.init(string: self.urlString + api.rawValue) else {
             return
         }
@@ -54,17 +62,50 @@ class NetworkService {
         }).resume()
     }
     
-    func postRequest<T:Codable> (input : T, post type : String, closure : @escaping (Result<Int,NetworkError>) -> Void) {
+    func deleteRequest(cardId : Int, api : postAPI, closure : @escaping (Result<Int,NetworkError>) -> Void) {
+        guard let url = URL.init(string: self.urlString + api.rawValue + String(cardId)) else {
+            return
+        }
+        var request = URLRequest(url: url)
+        request.httpMethod = "DELETE"
         
-        let optionalURL = URL.init(string: urlString + type)
+        session.dataTask(with: request, completionHandler: {(data,response,error) in
+            
+            let result = self.checkStatus(with: response)
+            closure(result)
+        }).resume()
+    }
+    
+    func putRequest(card : CellData, api : postAPI, closure : @escaping (Result<Int,NetworkError>) -> Void) {
+        let encoder = JSONEncoder()
+        guard let url = URL.init(string: self.urlString + api.rawValue + String(card.cardId)) else {
+            return
+        }
+        let sendData = try? encoder.encode(card)
+        var request = URLRequest(url: url)
+        request.httpMethod = "PUT"
+        request.httpBody = sendData
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        session.dataTask(with: request, completionHandler: {(data,response,error) in
+            
+            let result = self.checkStatus(with: response)
+            closure(result)
+        }).resume()
+    }
+    
+    func postRequest<T:Codable> (input : T, post type : postAPI, closure : @escaping (Result<Int,NetworkError>) -> Void) {
+        let encoder = JSONEncoder()
+        let optionalURL = URL.init(string: urlString + type.rawValue)
         guard let url = optionalURL else {
             return
         }
         
-        let sendData = try? JSONEncoder().encode(input)
+        let sendData = try? encoder.encode(input)
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.httpBody = sendData
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
         session.dataTask(with: request, completionHandler: {(data,response,error) in
             

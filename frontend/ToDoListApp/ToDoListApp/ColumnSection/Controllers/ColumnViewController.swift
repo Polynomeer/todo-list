@@ -13,6 +13,7 @@ class ColumnViewController : UIViewController, ViewDataProtocol {
     
     @IBOutlet weak var columnTitle: UILabel!
     @IBOutlet weak var columnTableView: UITableView!
+    @IBOutlet weak var badge: Badge!
     
     private var columnDataSource : ColumnDataSource = ColumnDataSource()
     private var columnDelegate : ColumnDelegate = ColumnDelegate()
@@ -54,6 +55,15 @@ class ColumnViewController : UIViewController, ViewDataProtocol {
     func receiveData(titleText: String, contentText: String) -> Void {
         let createdCellData : CellData = DataManager.shared.makeCellData(columnID: self.columnID, titleTextField: titleText, contentTextField: contentText)
         DataManager.shared.add(cellData:createdCellData)
+        NetworkService.shared.postRequest(input: createdCellData, post: .createCell, closure: { result in
+            switch result {
+            case .success(let data):
+                print(data)
+            case .failure(let error):
+                print(error)
+            }
+            
+        })
     }
     
     @objc private func updateSectionInTableView(sender: Notification) -> Void {
@@ -64,6 +74,7 @@ class ColumnViewController : UIViewController, ViewDataProtocol {
             return
         }
         self.columnTableView.insertSections(IndexSet(integer: columnTableView.numberOfSections), with: .automatic)
+        self.badge.text = "\(columnTableView.numberOfSections)"
     }
     
 }
@@ -82,6 +93,7 @@ extension ColumnViewController {
         columnViewDropDelegate.columnId = self.columnID
         columnTableView.dropDelegate = columnViewDropDelegate
         columnTableView.reloadData()
+        self.badge.text = "\(columnTableView.numberOfSections)"
         
         NotificationCenter.default.addObserver(self, selector: #selector(reload), name: .reloadAllColumnTable, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateSectionInTableView(sender:)), name: Notification.Name.addData, object: DataManager.shared)

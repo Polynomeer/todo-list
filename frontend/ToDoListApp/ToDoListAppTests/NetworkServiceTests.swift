@@ -49,7 +49,7 @@ class NetworkServiceTests: XCTestCase {
     
     func test_postToDoData() {
         let response = try? JSONDecoder().decode(CellData.self, from: testData.CellData.dummyCellData)
-        sut.postRequest(input: testDatas.CellData.dummyCellData, post: "", closure: { response in
+        sut.postRequest(input: testData.CellData.dummyCellData, post: "", closure: { response in
             switch response {
             case .failure :
                 XCTFail()
@@ -61,7 +61,7 @@ class NetworkServiceTests: XCTestCase {
     
     func test_postToDoData_Failure() {
         sut = .init(session: MockURLSession(makeRequestFail: true))
-        sut.postRequest(input: testDatas.CellData.dummyCellData, post: "", closure: { response in
+        sut.postRequest(input: testData.CellData.dummyCellData, post: "", closure: { response in
             switch response {
             case .failure(let error) :
                 XCTAssertEqual(error.localizedDescription, NetworkService.NetworkError.badResponse.localizedDescription)
