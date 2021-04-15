@@ -7,93 +7,49 @@
 
 import UIKit
 
-class ModalViewController : UIViewController {
+protocol ViewDataProtocol {
+    func receiveData(titleText: String, contentText: String) -> Void
+}
+
+class ModalViewController : UIViewController, UITextFieldDelegate{
+    
     @IBOutlet weak private var addButton: UIButton!
-    @IBOutlet weak private var CancelButton: UIButton!
+    @IBOutlet weak private var cancelButton: UIButton!
     @IBOutlet weak private var titleTextField: UITextField!
     @IBOutlet weak private var contentTextField: UITextField!
     
-    private var isTitleTextFieldNil : Bool
-    private var isContentTextFieldNil : Bool
-    
-    private let titleTextFieldDelegate : UITextFieldDelegate
-    private let contentTextFieldDelegate : UITextFieldDelegate
-    
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        isTitleTextFieldNil = false
-        isContentTextFieldNil = false
-        titleTextFieldDelegate = TitleTextFieldDelegate()
-        contentTextFieldDelegate = ContentTextFieldDelegate()
-        self.titleTextField.delegate = titleTextFieldDelegate
-        self.contentTextField.delegate = contentTextFieldDelegate
-        super.init(nibName: nil, bundle: nil)
-        initObservers()
-    }
-    
-    required init?(coder: NSCoder) {
-        isTitleTextFieldNil = false
-        isContentTextFieldNil = false
-        titleTextFieldDelegate = TitleTextFieldDelegate()
-        contentTextFieldDelegate = ContentTextFieldDelegate()
-        super.init(coder: coder)
-        initObservers()
-    }
+    private var delegate : ViewDataProtocol!
     
     override func viewDidLoad() {
-        self.titleTextField.delegate = titleTextFieldDelegate
-        self.contentTextField.delegate = contentTextFieldDelegate
+        self.titleTextField.delegate = self
+        self.contentTextField.delegate = self
         super.viewDidLoad()
     }
     
-    @IBAction func addCard(_ sender: Any) {
-        NotificationCenter.default.post(name: NSNotification.Name("addCard"), object: self)
+    @IBAction func addButtonPushed(_ sender: Any) {
+        guard let tempTitleText = titleTextField.text,
+              let tempContentText = contentTextField.text else {
+            return
+        }
+        self.delegate?.receiveData(titleText: tempTitleText, contentText: tempContentText)
+        self.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func inActiveNewCardForm(_ sender: Any) {
-        set(active: false)
+    @IBAction func cancelButtonPushed(_ sender: Any) {
+        self.dismiss(animated: false, completion: nil)
     }
-    
-    func set(active : Bool){
-        self.dismiss(animated: active, completion: nil)
-    }
-    
-    func makeCellData(columnID: Int) -> CellData {
-        guard let titlefieldText = titleTextField.text,
-              let contentFieldText = contentTextField.text
-        else { return CellData.init(columnId: columnID, cardId: -1, title: "", content: "", isApp: true, createdTime: "", position: 0) }
-        
-        let nextCardId = DataManager.shared.nextCellId()
-        let cellData : CellData = CellData.init(columnId: columnID, cardId: nextCardId, title: titlefieldText, content: contentFieldText, isApp: true, createdTime: Date().convert(), position: 0)
-        return cellData
+    func set(delegate: ViewDataProtocol){
+        self.delegate = delegate
     }
 }
 
 extension ModalViewController {
-    
-    private func initObservers(){
-        NotificationCenter.default.addObserver(self, selector: #selector(setTitleBool(notification:)), name: NSNotification.Name("updateTitleTextField"), object: titleTextFieldDelegate)
-        NotificationCenter.default.addObserver(self, selector: #selector(setContentBool(notification:)), name: NSNotification.Name("updateContentTextField"), object: contentTextFieldDelegate)
-    }
-
-    @objc private func setTitleBool(notification: Notification){
-        guard let tempuserInfo : Bool = notification.userInfo?["textUpdate"] as? Bool else {return}
-        self.isTitleTextFieldNil = tempuserInfo
-        if isContentTextFieldNil && isTitleTextFieldNil{
-            self.addButton.isEnabled = true
-        }
-        else {
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        if titleTextField.text == "" || contentTextField.text == "" {
             self.addButton.isEnabled = false
         }
-    }
-    
-    @objc private func setContentBool(notification: Notification){
-        guard let tempuserInfo : Bool = notification.userInfo?["textUpdate"] as? Bool else {return}
-        self.isContentTextFieldNil = tempuserInfo
-        if isContentTextFieldNil && isTitleTextFieldNil{
-            self.addButton.isEnabled = true
-        }
         else {
-            self.addButton.isEnabled = false
+            self.addButton.isEnabled = true
         }
     }
 }

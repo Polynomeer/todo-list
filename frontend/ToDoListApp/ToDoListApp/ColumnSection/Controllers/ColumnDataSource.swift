@@ -15,16 +15,19 @@ class ColumnDataSource : NSObject, UITableViewDataSource {
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return DataManager.shared.currentDatasCount(columnId: columnId)
+        return DataManager.shared.currentDataCount(columnId: columnId)
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell : ColumnCell = tableView.dequeueReusableCell(withIdentifier: "ColumnCell", for: indexPath) as? ColumnCell else {return UITableViewCell()}
         
+        let cellIdentifier : String = "ColumnCell"
+        guard let cell : ColumnCell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? ColumnCell else {
+            return UITableViewCell()
+        }
         let columnData = DataManager.shared.getCells(with: columnId)
-        cell.update(title: columnData[indexPath.section].title)
-        cell.update(content: columnData[indexPath.section].content)
+        cell.updateCell(title: columnData[indexPath.section].title, content: columnData[indexPath.section].content)
         cell.cellid = columnData[indexPath.section].cardId
+        
         return cell
     }
     
