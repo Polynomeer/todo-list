@@ -81,13 +81,6 @@ class DataManager : DataManagingProtocol{
     func cellDataContent(index : Int) -> String{
         return cellData[index].content
     }
-
-    func makeCellData(columnID: Int) -> CellData {
-        guard let titlefieldText = titleTextField.text,
-              let contentFieldText = contentTextField.text
-        else { return CellData.init(columnId: columnID, cardId: -1, title: "", content: "", isApp: true, createdTime: "", position: 0) }
-        
-        }
     
     func makeCellData(columnID: Int, titleTextField: String, contentTextField: String) -> CellData {
         let nextCardId = DataManager.shared.nextCellId()

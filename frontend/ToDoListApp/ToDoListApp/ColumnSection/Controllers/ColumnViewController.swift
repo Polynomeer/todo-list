@@ -50,7 +50,7 @@ class ColumnViewController : UIViewController, ViewDataProtocol {
     }
     
     func receiveData(titleText: String, contentText: String) -> Void {
-        let createdCellData : CellData = DataManager.shared.makeCellData(ColumnID: self.columnID, titleTextField: titleText, contentTextField: contentText)
+        let createdCellData : CellData = DataManager.shared.makeCellData(columnID: self.columnID, titleTextField: titleText, contentTextField: contentText)
         DataManager.shared.add(cellData:createdCellData)
     }
     
