@@ -19,6 +19,7 @@ class NetworkService {
     enum apiList : String {
         case none = ""
         case readHistory = "api/histories"
+        case readCells = "api/cards"
     }
     
     private let session : URLSessionProtocol

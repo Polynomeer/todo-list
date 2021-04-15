@@ -84,6 +84,7 @@ extension ColumnViewController {
         columnViewDropDelegate.columnId = self.columnID
         columnTableView.dropDelegate = columnViewDropDelegate
         columnTableView.reloadData()
+        self.badge.text = "\(columnTableView.numberOfSections)"
         
         NotificationCenter.default.addObserver(self, selector: #selector(reload), name: .reloadAllColumnTable, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateSectionInTableView(sender:)), name: Notification.Name.addData, object: DataManager.shared)

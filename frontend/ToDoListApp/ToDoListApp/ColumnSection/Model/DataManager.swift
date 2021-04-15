@@ -17,6 +17,10 @@ class DataManager : DataManagingProtocol{
         cellData = []
     }
     
+    func setData(cells : [CellData]) {
+        cellData.append(contentsOf: cells)
+    }
+    
     private func findLastCardId() -> Int? {
         if cellData.isEmpty == true {
             return nil
