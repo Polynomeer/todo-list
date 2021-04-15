@@ -52,7 +52,7 @@ class MockURLSession: URLSessionProtocol {
             if self.makeRequestFail {
                 completionHandler(nil,failureResponse,nil)
             } else {
-                completionHandler(testDatas.CellData.dummyCellData,successResponse,nil)
+                completionHandler(testData.CellData.dummyCellData,successResponse,nil)
             }
         }
         self.sessionDataTask = sessionDataTask
@@ -60,7 +60,7 @@ class MockURLSession: URLSessionProtocol {
     }
 }
 
-enum testDatas {
+enum testData {
     case CellData
     var dummyCellData : Data {
         Data (
