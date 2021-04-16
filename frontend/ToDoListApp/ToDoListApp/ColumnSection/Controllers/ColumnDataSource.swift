@@ -35,8 +35,6 @@ class ColumnDataSource : NSObject, UITableViewDataSource {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete{
             DataManager.shared.remove(index: indexPath.section, columnId: columnId)
-            
-            tableView.deleteSections(IndexSet(integer: indexPath.section), with: .fade)
         }
     }
 }

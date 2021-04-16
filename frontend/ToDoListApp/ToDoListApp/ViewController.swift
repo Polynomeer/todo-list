@@ -47,7 +47,7 @@ class ViewController: UIViewController {
     
     private func setViewControllerInContainerView(){
         let identifier : String = "ColumnView"
-        var columnTitles : [String] = ["완료한 일", "하고 있는 일", "해야할 일"]
+        var columnTitles : [String] = ["Done", "Doing", "To do"]
         let columnViewStoryboard = UIStoryboard.init(name: identifier, bundle: nil)
         
         DispatchQueue.main.async {

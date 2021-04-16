@@ -31,6 +31,7 @@ class ColumnViewController : UIViewController, ViewDataProtocol {
     @objc func reload() {
         DispatchQueue.main.async {
             self.columnTableView.reloadData()
+            self.badge.text = "\(self.columnTableView.numberOfSections)"
         }
     }
     
@@ -66,7 +67,7 @@ class ColumnViewController : UIViewController, ViewDataProtocol {
         })
     }
     
-    @objc private func updateSectionInTableView(sender: Notification) -> Void {
+    @objc private func updateSectionInTableViewCaseInsert(sender: Notification) -> Void {
         guard let receiveId : Int = sender.userInfo?["columnId"] as? Int else {
             return
         }
@@ -77,6 +78,16 @@ class ColumnViewController : UIViewController, ViewDataProtocol {
         self.badge.text = "\(columnTableView.numberOfSections)"
     }
     
+    @objc private func updateSectionInTableViewCaseDelete(sender: Notification) -> Void{
+        guard let receiveData : [Int] = sender.userInfo?["delete"] as? [Int] else {
+            return
+        }
+        if receiveData[1] != self.columnID {
+            return
+        }
+        self.columnTableView.deleteSections(IndexSet(integer: receiveData[0]), with: .automatic)
+        self.badge.text = "\(columnTableView.numberOfSections)"
+    }
 }
 
 extension ColumnViewController {
@@ -96,6 +107,7 @@ extension ColumnViewController {
         self.badge.text = "\(columnTableView.numberOfSections)"
         
         NotificationCenter.default.addObserver(self, selector: #selector(reload), name: .reloadAllColumnTable, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(updateSectionInTableView(sender:)), name: Notification.Name.addData, object: DataManager.shared)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateSectionInTableViewCaseInsert(sender:)), name: Notification.Name.addData, object: DataManager.shared)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateSectionInTableViewCaseDelete(sender:)), name: Notification.Name.deleteData, object: DataManager.shared)
     }
 }

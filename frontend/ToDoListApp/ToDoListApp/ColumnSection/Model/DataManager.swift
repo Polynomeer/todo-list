@@ -53,7 +53,7 @@ class DataManager : DataManagingProtocol {
     func add(cellData : CellData) -> Void{
         self.cellData.append(cellData)
         NotificationCenter.default.post(name: Notification.Name.addData, object: self, userInfo: ["columnId" : cellData.columnId])
-        NotificationCenter.default.post(name: .reloadAllColumnTable, object: nil)
+        NotificationCenter.default.post(name: .reloadAllColumnTable, object: self)
     }
     
     func remove(index : Int, columnId : Int) -> Void {
@@ -74,8 +74,9 @@ class DataManager : DataManagingProtocol {
                 print(error)
             }
         })
-        
         cellData.remove(at: target)
+        let IndexAndColumnID : [Int] = [index, columnId]
+        NotificationCenter.default.post(name: Notification.Name.deleteData, object: self, userInfo: ["delete" : IndexAndColumnID])
     }
     
     func move(to column: Int, cellId : Int) -> Void{

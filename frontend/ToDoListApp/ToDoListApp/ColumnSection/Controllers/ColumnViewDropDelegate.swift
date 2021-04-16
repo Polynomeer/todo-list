@@ -40,7 +40,6 @@ extension ColumnViewDropDelegate : UITableViewDropDelegate {
                     }
             })
         })
-        
         NotificationCenter.default.post(name: .reloadAllColumnTable, object: self)
     }
 }

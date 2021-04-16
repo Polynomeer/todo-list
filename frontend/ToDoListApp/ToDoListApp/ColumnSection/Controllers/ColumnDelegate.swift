@@ -21,13 +21,12 @@ class ColumnDelegate : NSObject, UITableViewDelegate{
                     return
                 }
                 DataManager.shared.move(to: 2, cellId: cell.cellid)
-                tableView.reloadData()
             }
             let fix = UIAction(title: "수정하기", image: UIImage(systemName: "pencil")){ _ in
                 print("fix was selected")
             }
             let delete = UIAction(title: "삭제하기", image: UIImage(systemName: "trash.fill"), attributes: .destructive){_ in
-
+                
             }
             return UIMenu(title: "", children: [moveTodone, fix, delete])
         }
