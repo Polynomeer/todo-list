@@ -50,6 +50,15 @@ class DataManager : DataManagingProtocol {
         })
     }
     
+    func modifyCellData(cellData : CellData) -> Void {
+        guard let target = self.cellData.firstIndex(where: {
+            $0.cardId == cellData.cardId
+        }) else {
+            return
+        }
+        self.cellData[target] = cellData
+    }
+    
     func add(cellData : CellData) -> Void{
         self.cellData.append(cellData)
         NotificationCenter.default.post(name: Notification.Name.addData, object: self, userInfo: ["columnId" : cellData.columnId])

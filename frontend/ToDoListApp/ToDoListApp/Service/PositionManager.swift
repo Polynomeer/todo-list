@@ -83,8 +83,8 @@ class PositionManager {
         if index == 0 {
             upper = DataManager.shared.positionManager.nextPosition(with: cards)
             lower = cards[index].position
-        } else if index == cards.count - 1 {
-            upper = cards[index].position
+        } else if index >= cards.count - 1 {
+            upper = cards[cards.count - 1].position
             lower = 0
         } else {
             upper = cards[index - 1].position

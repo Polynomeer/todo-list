@@ -8,5 +8,4 @@
 import Foundation
 
 extension Notification.Name {
-    static var reloadAllColumnTable = Notification.Name("reloadAllColumnTable")
 }

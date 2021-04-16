@@ -199,6 +199,25 @@
                                     <action selector="addButtonPushed:" destination="cRD-uS-59D" eventType="touchUpInside" id="6xQ-Du-Gf0"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9N1-P9-JX8" userLabel="modify Button">
+                                <rect key="frame" x="276" y="163" width="108" height="40"/>
+                                <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Q3n-HU-Q4F"/>
+                                    <constraint firstAttribute="width" constant="108" id="WuY-9h-HuS"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="수정"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="modifyButtonPushed:" destination="cRD-uS-59D" eventType="touchUpInside" id="HPi-fw-Yyc"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HKc-YV-gaL">
                                 <rect key="frame" x="160" y="163" width="108" height="40"/>
                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
@@ -218,20 +237,34 @@
                                     <action selector="cancelButtonPushed:" destination="cRD-uS-59D" eventType="touchUpInside" id="JCX-Hx-U0S"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="카드 내용 수정하기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QG1-T7-bBr" userLabel="카드 내용 수정하기">
+                                <rect key="frame" x="16" y="60" width="368" height="23"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="368" id="JBT-wb-kiu"/>
+                                    <constraint firstAttribute="height" constant="23" id="gvt-cM-3Cv"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="9wL-Gt-aK0"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="9wL-Gt-aK0" firstAttribute="trailing" secondItem="QG1-T7-bBr" secondAttribute="trailing" constant="16" id="2q3-WJ-6RB"/>
                             <constraint firstItem="9wL-Gt-aK0" firstAttribute="bottom" secondItem="PcI-mF-uzi" secondAttribute="bottom" constant="16" id="6xc-5y-XtI"/>
                             <constraint firstItem="Ybq-Jr-iRR" firstAttribute="top" secondItem="9wL-Gt-aK0" secondAttribute="top" constant="16" id="ESu-Xx-oDw"/>
                             <constraint firstItem="Ybq-Jr-iRR" firstAttribute="leading" secondItem="9wL-Gt-aK0" secondAttribute="leading" constant="16" id="J2O-Rz-jVU"/>
+                            <constraint firstItem="9wL-Gt-aK0" firstAttribute="bottom" secondItem="9N1-P9-JX8" secondAttribute="bottom" constant="16" id="OlD-zI-Wj9"/>
                             <constraint firstItem="PcI-mF-uzi" firstAttribute="leading" secondItem="HKc-YV-gaL" secondAttribute="trailing" constant="8" id="TT2-vw-EJt"/>
+                            <constraint firstItem="9wL-Gt-aK0" firstAttribute="trailing" secondItem="9N1-P9-JX8" secondAttribute="trailing" constant="16" id="UeF-Hn-2KX"/>
                             <constraint firstItem="VPR-JG-RuT" firstAttribute="top" secondItem="mZm-iv-P9n" secondAttribute="bottom" constant="8" id="Wa6-Vw-Uw2"/>
                             <constraint firstItem="mZm-iv-P9n" firstAttribute="leading" secondItem="Ybq-Jr-iRR" secondAttribute="leading" id="dZk-3a-EtA"/>
                             <constraint firstItem="9wL-Gt-aK0" firstAttribute="trailing" secondItem="PcI-mF-uzi" secondAttribute="trailing" constant="16" id="iCF-1w-txV"/>
                             <constraint firstItem="HKc-YV-gaL" firstAttribute="bottom" secondItem="PcI-mF-uzi" secondAttribute="bottom" id="kqK-Sq-1eG"/>
                             <constraint firstItem="mZm-iv-P9n" firstAttribute="top" secondItem="Ybq-Jr-iRR" secondAttribute="bottom" constant="16" id="maO-yK-RNN"/>
                             <constraint firstItem="VPR-JG-RuT" firstAttribute="leading" secondItem="mZm-iv-P9n" secondAttribute="leading" id="yH4-Q4-C7O"/>
+                            <constraint firstItem="QG1-T7-bBr" firstAttribute="top" secondItem="9wL-Gt-aK0" secondAttribute="top" constant="16" id="yt0-LS-rWI"/>
                         </constraints>
                     </view>
                     <value key="contentSizeForViewInPopover" type="size" width="400" height="219"/>
@@ -240,7 +273,10 @@
                     <connections>
                         <outlet property="addButton" destination="PcI-mF-uzi" id="VPa-RJ-nLS"/>
                         <outlet property="cancelButton" destination="HKc-YV-gaL" id="BJY-dE-PH9"/>
+                        <outlet property="cardModifyTitle" destination="QG1-T7-bBr" id="9cO-Mi-lSY"/>
                         <outlet property="contentTextField" destination="VPR-JG-RuT" id="7sG-mU-XiZ"/>
+                        <outlet property="modifyButton" destination="9N1-P9-JX8" id="p4B-Ke-IoA"/>
+                        <outlet property="newCardTItle" destination="Ybq-Jr-iRR" id="7JD-J6-5Vq"/>
                         <outlet property="titleTextField" destination="mZm-iv-P9n" id="uOT-7H-hMZ"/>
                     </connections>
                 </viewController>

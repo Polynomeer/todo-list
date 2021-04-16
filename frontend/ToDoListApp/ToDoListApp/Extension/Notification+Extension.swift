@@ -11,4 +11,6 @@ extension Notification.Name {
     static var addCard = Notification.Name.init("addCard")
     static var addData = Notification.Name.init("addData")
     static var deleteData = Notification.Name.init("DeleteData")
+    static var reloadAllColumnTable = Notification.Name("reloadAllColumnTable")
+    static var modifyCard = Notification.Name("modifyCard")
 }
