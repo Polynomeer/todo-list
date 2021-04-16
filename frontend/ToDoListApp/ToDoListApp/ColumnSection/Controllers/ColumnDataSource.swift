@@ -14,6 +14,36 @@ class ColumnDataSource : NSObject, UITableViewDataSource {
         return 1
     }
     
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+            true
+    }
+    
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        let columnData = DataManager.shared.getCells(with: columnId)
+        let sorted = DataManager.shared.positionManager.sort(card: columnData)
+        
+        let selectedCard = sorted[sourceIndexPath.section]
+        
+        DataManager.shared.positionManager.setPosition(target: selectedCard.cardId, column: columnId, to: destinationIndexPath.section)
+        NetworkService.shared.putRequest(card: selectedCard, api: .deleteOrUpdateCell, closure: {
+            result in
+            switch result {
+            case .success(let data):
+                print(data)
+            case .failure(let error):
+                print(error)
+            }
+        })
+        
+        let index = IndexSet(integer: sourceIndexPath.section)
+        tableView.deleteSections(index, with: .fade)
+        
+        let newIndex = IndexSet(integer: destinationIndexPath.section)
+        tableView.insertSections(newIndex, with: .fade)
+        
+        
+    }
+        
     func numberOfSections(in tableView: UITableView) -> Int {
         return DataManager.shared.currentDataCount(columnId: columnId)
     }
